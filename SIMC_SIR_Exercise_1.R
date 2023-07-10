@@ -1,13 +1,8 @@
-## ----setup, include=FALSE-----------------------------------------------------
-knitr::opts_chunk$set(echo = TRUE)
-
-
 ## ----Download Libraries-------------------------------------------------------
 library(deSolve)   # numerical integration package
 library(ggplot2)   # plotting package
 library(tidyverse) # packages for handling and reshaping data
 library(reshape2) 
-library(magrittr)
 library(stats) # statistics package
 
 
