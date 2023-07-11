@@ -14,13 +14,13 @@ maxtime = 10 # How long to simulate for
 npts = 100 # Number of time points during the simulation 
 dt = maxtime/npts # Timestep length
 
-# Create the arrays
+# Create the arrays -- one entry per timestep
 x = np.arange(npts)
 S = np.zeros(npts)
 I = np.zeros(npts)
 R = np.zeros(npts)
 time = x*dt
-S[0] = N - I0
+S[0] = N - I0 # Set initial conditions
 I[0] = I0
 
 # Run the simulation

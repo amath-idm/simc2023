@@ -24,8 +24,8 @@ S[0] = N - I0 # Set initial conditions
 I[0] = I0
 
 
-# Define each agent
-class Agent:
+# Define each person
+class Person:
     
     def __init__(self):
         self.S = True # People start off susceptible
@@ -58,38 +58,39 @@ class Agent:
 class Population:
     
     def __init__(self):
-        self.agents = [Agent() for i in range(N)] # Create all the agents
-        for i in range(I0):
-            self.agents[i].infect() # Set the initial conditions
+        self.people = [Person() for i in range(N)] # Create all the people
+        for person in self.people[0:I0]: # Make the first I0 people infectious
+            person.infect() # Set the initial conditions
     
     def count_S(self): # Count how many people are susceptible
-        return sum([agent.S for agent in self.agents])
+        return sum([person.S for person in self.people])
     
     def count_I(self):
-        return sum([agent.I for agent in self.agents])
+        return sum([person.I for person in self.people])
     
     def count_R(self):
-        return sum([agent.R for agent in self.agents])
+        return sum([person.R for person in self.people])
 
-    def check_infections(self):
-        for person1 in self.agents:
-            for person2 in self.agents:
+    def check_infections(self): # CHeck which infectious occur
+        for person1 in self.people:
+            for person2 in self.people:
                 person1.check_infect(person2)
     
-    def check_recoveries(self):
-        for person in self.agents:
+    def check_recoveries(self): # Check which recoveries occur
+        for person in self.people:
             person.check_recovery()
-        
 
+
+# Create the population
+pop = Population()
 
 # Run the simulation
-pop = Population()
 for t in x[:-1]:
     
-    pop.check_infections()
-    pop.check_recoveries()
+    pop.check_infections() # CHeck which infectious occur
+    pop.check_recoveries() # Check which recoveries occur
     
-    S[t+1] = pop.count_S()
+    S[t+1] = pop.count_S() # Count the current number of susceptible people
     I[t+1] = pop.count_I()
     R[t+1] = pop.count_R()
 
