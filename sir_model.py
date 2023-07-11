@@ -1,5 +1,5 @@
 '''
-Simple SIR model in Python
+Simple SIR model in Python; compare with agent_model.py
 '''
 
 import numpy as np
